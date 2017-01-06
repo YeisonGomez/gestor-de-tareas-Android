@@ -14,9 +14,9 @@ import android.util.Log;
 
 public class taskDB {
 
-    private static final String TASK_ID = "_id";
-    private static final String TASK_SUBJECT = "subject";
-    private static final String TASK_IMPORTANT = "important";
+    public static final String TASK_ID = "_id";
+    public static final String TASK_SUBJECT = "subject";
+    public static final String TASK_IMPORTANT = "important";
 
     private static final String TAG = "TaskAdapter";
     private DatabaseHelper DbHelper;
@@ -48,7 +48,7 @@ public class taskDB {
         Db.insert(TABLE_NAME, null, values);
     }
 
-    public long createTask(task reminder){
+    public long createTask(taskObject reminder){
         ContentValues values = new ContentValues();
         values.put(TASK_SUBJECT, reminder.getSubject());
         values.put(TASK_IMPORTANT, reminder.getImportant());
@@ -56,7 +56,7 @@ public class taskDB {
     }
 
     //READ
-    public task readTaskById(int id){
+    public taskObject readTaskById(int id){
         Cursor cursor = Db.query(
                 TABLE_NAME,
                 new String[]{ TASK_ID, TASK_SUBJECT, TASK_IMPORTANT },
@@ -66,7 +66,7 @@ public class taskDB {
         if (cursor != null)
             cursor.moveToFirst();
 
-        return new task(
+        return new taskObject(
                 cursor.getString(1),
                 cursor.getInt(0),
                 cursor.getInt(2)
@@ -85,7 +85,7 @@ public class taskDB {
     }
 
     //UPDATE
-    public void updateTask(task reminder){
+    public void updateTask(taskObject reminder){
         ContentValues values = new ContentValues();
         values.put(TASK_SUBJECT, reminder.getSubject());
         values.put(TASK_IMPORTANT, reminder.getImportant());

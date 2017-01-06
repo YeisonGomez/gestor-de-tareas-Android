@@ -1,5 +1,6 @@
 package com.example.yeisongomez.gestordetareas;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,22 +16,57 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     private ListView mListView;
+    private taskDB taskDb;
+    private TaskSimpleCursorAdapter cursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         mListView = (ListView) findViewById(R.id.content_task);
+        findViewById(R.id.content_task);
+        mListView.setDivider(null);
+        this.taskDb = new taskDB(this);
+        this.taskDb.open();
+
+        //Iniciarlizar algunos valores
+        if (savedInstanceState == null)
+            taskDb.deleteTaskAll();
+            taskDb.createTask("Hola 1", true);
+            taskDb.createTask("Hola 2", false);
+            taskDb.createTask("Hola 3", false);
+            taskDb.createTask("Hola 4", false);
+
+        Cursor cursor = taskDb.readTask();
+
+        String[] from = new String[]{
+                taskDb.TASK_SUBJECT
+        };
+
+        int[] to = new int[]{
+                R.id.textView
+        };
+
+        cursorAdapter = new TaskSimpleCursorAdapter(
+                MainActivity.this,
+                R.layout.content_main,
+                cursor,
+                from,
+                to,
+                0
+
+        );
+
+        /* //ADAPTER ESTATICO
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 R.layout.component_task,
                 R.id.textView,
                 new String[]{"Hola 1", "Hola 2", "Hola 3"}
-        );
+        );*/
 
-        mListView.setAdapter(arrayAdapter);
+        mListView.setAdapter(cursorAdapter);
     }
 
 

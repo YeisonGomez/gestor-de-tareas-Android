@@ -4,12 +4,12 @@ package com.example.yeisongomez.gestordetareas;
  * Created by YeisonGomez on 5/01/17.
  */
 
-public class task {
+public class taskObject {
     private int id;
     private String subject;
     private int important;
 
-    public task(String subject, int important, int id) {
+    public taskObject(String subject, int important, int id) {
         this.subject = subject;
         this.important = important;
         this.id = id;
