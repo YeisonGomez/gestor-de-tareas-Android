@@ -26,14 +26,14 @@ public class TaskSimpleCursorAdapter extends SimpleCursorAdapter{
         super.bindView(view, context, cursor);
 
         ViewHolder holder = (ViewHolder) view.getTag();
-        if (holder != null)
+        if (holder == null)
             holder = new ViewHolder();
             holder.colImp = cursor.getColumnIndexOrThrow(taskDB.TASK_IMPORTANT);
             holder.listTab = view.findViewById(R.id.row_tab);
             view.setTag(holder);
 
         if (cursor.getInt(holder.colImp) > 0)
-            holder.listTab.setBackgroundColor(context.getResources().getColor(R.color.naranja));
+            holder.listTab.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
         else
             holder.listTab.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
     }

@@ -29,7 +29,7 @@ public class taskDB {
     private static Context ctx;
 
     private static final String CREATE_DB =
-            "CREATE TABLE if not exists" + TABLE_NAME + " ( " +
+            "CREATE TABLE if not exists " + TABLE_NAME + " ( " +
                     TASK_ID + " INTEGER PRIMARY KEY autoincrement,  " +
                     TASK_SUBJECT + " TEXT, " +
                     TASK_IMPORTANT + " INTEGER );";
