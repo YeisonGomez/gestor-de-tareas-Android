@@ -9,14 +9,15 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:background="?android:attr/activatedBackgroundIndicator">
 
-        <view
+        <view 
             android:layout_width="10dp"
             android:layout_height="match_parent"
             class="android.view.View"
             android:id="@+id/row_tab"
-            android:background="@color/colorAccent" />
+            android:background="@color/azul_claro" />
         <TextView
             android:text="Mi Tarea"
             android:layout_width="wrap_content"
