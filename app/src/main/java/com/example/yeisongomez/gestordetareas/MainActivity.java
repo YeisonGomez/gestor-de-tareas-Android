@@ -16,10 +16,15 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private taskDB taskDb;
     private TaskSimpleCursorAdapter cursorAdapter;
+    private FloatingActionButton addTask;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -34,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO Evento boton flotante
+        addTask = (FloatingActionButton) findViewById(R.id.fab);
+        addTask.setOnClickListener(view -> {
+            activeModalAddTask(null);
+        });
+
+        //TODO Lista de tareas
         mListView = (ListView) findViewById(R.id.content_task);
         findViewById(R.id.content_task);
         mListView.setDivider(null);
@@ -41,13 +54,14 @@ public class MainActivity extends AppCompatActivity {
         this.taskDb.open();
 
         //Iniciarlizar algunos valores
+        /* //TODO Agregar valores estaticos a SQLite
         if (savedInstanceState == null)
             taskDb.deleteTaskAll();
             taskDb.createTask("Hola 1", true);
             taskDb.createTask("Hola 2", false);
             taskDb.createTask("Hola 3", false);
             taskDb.createTask("Hola 4", false);
-
+        */
         Cursor cursor = taskDb.readTask();
 
         String[] from = new String[]{
@@ -136,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Log.d(getLocalClassName(), "Crear nuevo Aviso");
                 return true;
             case R.id.action_exit:
                 finish();
@@ -144,6 +157,41 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
         }
+    }
+
+    private void activeModalAddTask(taskObject task){
+        //TODO Modal de agregar tareas
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_new_task);
+
+        TextView text = (TextView) dialog.findViewById(R.id.textDialog);
+        EditText editSubject = (EditText) dialog.findViewById(R.id.subject_task);
+        CheckBox important = (CheckBox) dialog.findViewById(R.id.checkBox);
+        Button button_cancel = (Button) dialog.findViewById(R.id.button_cancel);
+        Button button_ok = (Button) dialog.findViewById(R.id.button_ok);
+        boolean isEditOperation = (task != null);
+
+        if (isEditOperation) {
+            text.setText("Editar Tarea");
+            editSubject.setText(task.getSubject());
+            important.setChecked(task.getImportant() == 1);
+        }
+
+        button_ok.setOnClickListener(view -> {
+            if (isEditOperation)
+                taskDb.updateTask(new taskObject(editSubject.getText().toString(), important.isChecked() ? 1 : 0));
+            else
+                taskDb.createTask(editSubject.getText().toString(), important.isChecked());
+            cursorAdapter.changeCursor(taskDb.readTask());
+            dialog.dismiss();
+        });
+
+        button_cancel.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
+        dialog.show();
     }
 
     private void notifyToas(String text){

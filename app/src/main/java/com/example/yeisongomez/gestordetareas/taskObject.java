@@ -14,6 +14,10 @@ public class taskObject {
         this.important = important;
         this.id = id;
     }
+    public taskObject(String subject, int important) {
+        this.subject = subject;
+        this.important = important;
+    }
 
     public int getId() {
         return id;
