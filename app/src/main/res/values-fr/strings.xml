@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GestorDeTareas</string>
+    <string name="action_settings">GuiaFrances</string>
+    <string name="salir">SalirFrances</string>
+</resources>
