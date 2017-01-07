@@ -40,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //TODO Agregar icono en el header
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(R.mipmap.ic_launcher);
 
         //TODO Evento boton flotante
@@ -201,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void notifyToas(String text){
+        //TODO Notificacion Toast
+        //LENGTH_SHORT (Poca duración)
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
     }
 

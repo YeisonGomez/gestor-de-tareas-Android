@@ -13,7 +13,12 @@
     tools:context="com.example.yeisongomez.gestordetareas.MainActivity"
     tools:showIn="@layout/activity_main">
 
-
+    <ImageView
+        android:id="@+id/imagen_example"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/apple"
+        />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

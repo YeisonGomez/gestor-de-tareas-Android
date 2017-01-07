@@ -25,7 +25,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/subject_task"
-            android:text="Asunto"
+            android:hint="Asunto"
             android:layout_weight="0.13"
             android:layout_height="wrap_content"
             android:singleLine="false"
