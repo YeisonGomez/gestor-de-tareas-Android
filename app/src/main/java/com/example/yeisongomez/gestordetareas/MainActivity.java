@@ -2,6 +2,7 @@ package com.example.yeisongomez.gestordetareas;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -157,6 +158,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                //TODO Cambiar Activity
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Cursor fistSubject = (Cursor) mListView.getItemAtPosition(0);
+
+                intent.putExtra("first_task_subject", fistSubject.getString(fistSubject.getColumnIndex("subject")));
+                intent.putExtra("first_task_important", fistSubject.getInt(fistSubject.getColumnIndex("important")));
+                startActivity(intent);
                 return true;
             case R.id.action_exit:
                 finish();

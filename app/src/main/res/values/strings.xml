@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">GestorDeTareas</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Guia</string>
     <string name="salir">Salir</string>
 </resources>
