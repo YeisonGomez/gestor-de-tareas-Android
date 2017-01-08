@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO Lista de tareas
         mListView = (ListView) findViewById(R.id.content_task);
-        findViewById(R.id.content_task);
         mListView.setDivider(null);
         this.taskDb = new taskDB(this);
         this.taskDb.open();
@@ -100,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(cursorAdapter);
 
         //TODO Agregar dialogo al darle click a un item (Edit, delete)
-        /*mListView.setOnItemClickListener((parent, view, listPosition, l) -> {
+        mListView.setOnItemClickListener((parent, view, listPosition, l) -> {
             dialogOption(listPosition);
-        });*/
+        });
 
         //TODO Activar headerOption (delete)
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);

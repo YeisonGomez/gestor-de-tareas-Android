@@ -1,5 +1,6 @@
  package com.example.yeisongomez.gestordetareas;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -8,8 +9,10 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +50,19 @@ import android.widget.Toast;
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        //TODO listView basica
+        String[] valores = new String[] {"Probando 1", "Probando 2", "Probando 3"};
+        ListView list_guide = (ListView) findViewById(R.id.list_guide);
+        ArrayAdapter<String> adapter =  new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, valores);
+        list_guide.setAdapter(adapter);
+
+        //Cambiar a activity_webview
+        Button open_webview = (Button) findViewById(R.id.open_webview);
+        open_webview.setOnClickListener(view -> {
+            Intent intent = new Intent(SecondActivity.this, WebViewActivity.class);
+            startActivity(intent);
+        });
     }
 
      @Override
