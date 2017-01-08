@@ -46,6 +46,7 @@ import android.widget.Toast;
         state_sensor = (TextView) findViewById(R.id.state_sensor);
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        sm.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
      @Override
@@ -54,10 +55,10 @@ import android.widget.Toast;
          state_sensor.setText(texto);
 
          float valor = Float.parseFloat(texto);
-         if (valor == 0){
-            layoutSensor.setBackgroundColor(Color.BLUE);
+         if (valor == 100 ){
+            layoutSensor.setBackgroundColor(Color.WHITE);
          } else{
-             layoutSensor.setBackgroundColor(Color.YELLOW);
+             layoutSensor.setBackgroundColor(Color.BLUE);
          }
      }
 

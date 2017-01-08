@@ -28,6 +28,7 @@
             android:hint="Estado del sensor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/state_sensor" />
+            android:id="@+id/state_sensor"
+            android:textSize="20sp" />
     </LinearLayout>
 </RelativeLayout>
