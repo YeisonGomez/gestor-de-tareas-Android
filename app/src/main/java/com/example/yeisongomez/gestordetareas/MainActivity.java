@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                //TODO Cambiar Activity
+                //TODO Cambiar de Activity
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 Cursor fistSubject = (Cursor) mListView.getItemAtPosition(0);
 

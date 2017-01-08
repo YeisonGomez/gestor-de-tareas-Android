@@ -15,12 +15,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:id="@+id/layoutSensor">
 
         <Button
             android:text="Activar Toast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/active_toast" />
+
+        <TextView
+            android:hint="Estado del sensor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/state_sensor" />
     </LinearLayout>
 </RelativeLayout>
